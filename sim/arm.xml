@@ -1,0 +1,40 @@
+<mujoco model="paint_arm">
+  <compiler angle="degree"/>
+  <option timestep="0.002"/>
+
+  <worldbody>
+    <!-- fixed post holding the arm up -->
+    <body name="stand" pos="0 0 0">
+      <geom name="column" type="cylinder" size="0.03 0.15" pos="0 0 0.15"/>
+
+      <!-- SHOULDER: swings link1 horizontally, like a clock hand -->
+      <body name="link1" pos="0 0 0.32">
+        <joint name="shoulder" type="hinge" axis="0 0 1" range="-150 150"/>
+        <geom name="l1" type="capsule" fromto="0 0 0 0.30 0 0" size="0.02"
+              contype="0" conaffinity="0"/>
+
+        <!-- ELBOW: swings link2 relative to link1 -->
+        <body name="link2" pos="0.30 0 0">
+          <joint name="elbow" type="hinge" axis="0 0 1" range="-150 150"/>
+          <geom name="l2" type="capsule" fromto="0 0 0 0.26 0 0" size="0.018"
+                contype="0" conaffinity="0"/>
+
+          <!-- LIFT: slides the brush straight up/down -->
+          <body name="brush_mount" pos="0.26 0 0">
+            <joint name="lift" type="slide" axis="0 0 1" range="0 0.1"/>
+            <geom name="brush" type="cylinder" fromto="0 0 0 0 0 -0.14" size="0.008"
+                  contype="0" conaffinity="0"/>
+            <!-- a named point at the bristle tip; we'll ask "where is this?" later -->
+            <site name="brush_tip" pos="0 0 -0.14"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="shoulder_m" joint="shoulder" kp="60"/>
+    <position name="elbow_m" joint="elbow" kp="60"/>
+    <position name="lift_m" joint="lift" kp="120"/>
+  </actuator>
+</mujoco>
