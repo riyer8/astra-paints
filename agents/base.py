@@ -9,7 +9,7 @@ class Agent:
         raise NotImplementedError
 
 
-def execute_strokes(world, canvas, strokes):
+def execute_strokes(world, canvas, strokes, on_step=None):
     """Hands: move the brush through strokes, stamping as it goes."""
     for stroke in strokes:
         color, pts = stroke["color"], stroke["points"]
@@ -27,5 +27,7 @@ def execute_strokes(world, canvas, strokes):
                 world.step(4)
                 tip = world.brush_tip()
                 canvas.stamp(tip[0], tip[1], color)
+                if on_step:
+                    on_step()
         world.set_targets(s, e, 0.1)  # lift at the end
         world.step(100)
