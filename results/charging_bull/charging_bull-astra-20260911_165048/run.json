@@ -1,0 +1,82 @@
+{
+  "subject": "charging bull",
+  "agent": "astra",
+  "model": "gpt-6-astra",
+  "started_at": "2026-09-11T16:50:48.313219",
+  "rounds": [
+    {
+      "round": 0,
+      "strokes": 8,
+      "done": false,
+      "plan_seconds": 12.47,
+      "exec_seconds": 0.94,
+      "coverage": 0.0414,
+      "prompt_tokens": 211,
+      "completion_tokens": 530,
+      "cost_dollars": 0.02861
+    },
+    {
+      "round": 1,
+      "strokes": 7,
+      "done": false,
+      "plan_seconds": 14.05,
+      "exec_seconds": 1.72,
+      "coverage": 0.1136,
+      "prompt_tokens": 211,
+      "completion_tokens": 749,
+      "cost_dollars": 0.03956
+    },
+    {
+      "round": 2,
+      "strokes": 6,
+      "done": false,
+      "plan_seconds": 11.95,
+      "exec_seconds": 0.27,
+      "coverage": 0.1225,
+      "prompt_tokens": 211,
+      "completion_tokens": 504,
+      "cost_dollars": 0.02731
+    },
+    {
+      "round": 3,
+      "strokes": 7,
+      "done": false,
+      "plan_seconds": 12.14,
+      "exec_seconds": 0.43,
+      "coverage": 0.1393,
+      "prompt_tokens": 211,
+      "completion_tokens": 492,
+      "cost_dollars": 0.02671
+    },
+    {
+      "round": 4,
+      "strokes": 7,
+      "done": false,
+      "plan_seconds": 11.33,
+      "exec_seconds": 0.47,
+      "coverage": 0.1516,
+      "prompt_tokens": 211,
+      "completion_tokens": 503,
+      "cost_dollars": 0.02726
+    },
+    {
+      "round": 5,
+      "strokes": 8,
+      "done": false,
+      "plan_seconds": 10.58,
+      "exec_seconds": 0.59,
+      "coverage": 0.1652,
+      "prompt_tokens": 211,
+      "completion_tokens": 532,
+      "cost_dollars": 0.02871
+    }
+  ],
+  "finished_at": "2026-09-11T16:52:05.663664",
+  "total_strokes": 43,
+  "total_prompt_tokens": 1266,
+  "total_completion_tokens": 3310,
+  "total_cost_dollars": 0.1782,
+  "total_plan_seconds": 72.5,
+  "total_exec_seconds": 4.4,
+  "final_coverage": 0.1652
+}

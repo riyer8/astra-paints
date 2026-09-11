@@ -39,10 +39,12 @@ def main():
     tl = Timelapse(world, canvas, every=15)
     agent = get_agent(args.agent, args.subject)
 
-    run_dir = os.path.join(args.out,
-        f"{args.subject}_{args.agent}_{datetime.datetime.now():%Y%m%d_%H%M%S}")
+    subject_slug = args.subject.replace(" ", "_")
+    run_dir = os.path.join(args.out, subject_slug,
+        f"{subject_slug}-{args.agent}-{datetime.datetime.now():%Y%m%d_%H%M%S}")
     os.makedirs(run_dir, exist_ok=True)
     print("saving to", run_dir)
+
 
     summary = {
         "subject": args.subject,

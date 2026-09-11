@@ -14,6 +14,7 @@ def load(run_dir):
         cap = os.path.basename(run_dir)
     return im, cap
 
+run_dir = sys.argv[1]
 ims, caps = zip(*[load(d) for d in sys.argv[1:3]])
 label_h, (w, h) = 30, ims[0].size
 sheet = Image.new("RGB", (w * len(ims), h + label_h), "white")
@@ -21,5 +22,7 @@ d = ImageDraw.Draw(sheet)
 for i, (im, cap) in enumerate(zip(ims, caps)):
     sheet.paste(im, (i * w, label_h))
     d.text((i * w + 8, 8), cap, fill="black")
-sheet.save("compare.png")
-print("saved compare.png")
+
+out = os.path.join(run_dir, "compare.png")
+sheet.save(out)
+print("saved", out)
