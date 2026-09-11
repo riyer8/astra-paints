@@ -1,6 +1,6 @@
 """The world: holds the sim, steps physics, translates brush <-> joints."""
 import math
-import mujoco
+import mujoco  # pyright: ignore[reportMissingImports]
 import numpy as np
 
 

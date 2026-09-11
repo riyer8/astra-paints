@@ -1,6 +1,6 @@
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import mujoco
+import mujoco  # pyright: ignore[reportMissingImports]
 from sim.world import PaintingWorld
 
 w = PaintingWorld()

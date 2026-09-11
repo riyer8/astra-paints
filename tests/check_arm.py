@@ -1,4 +1,4 @@
-import mujoco
+import mujoco  # pyright: ignore[reportMissingImports]
 model = mujoco.MjModel.from_xml_path("sim/arm.xml")
 for kind, n, label in [(mujoco.mjtObj.mjOBJ_BODY, model.nbody, "bodies"),
                        (mujoco.mjtObj.mjOBJ_JOINT, model.njnt, "joints"),
