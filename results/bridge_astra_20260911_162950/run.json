@@ -1,0 +1,104 @@
+{
+  "subject": "bridge",
+  "agent": "astra",
+  "model": "gpt-6-astra",
+  "started_at": "2026-09-11T16:29:50.124044",
+  "rounds": [
+    {
+      "round": 0,
+      "strokes": 8,
+      "done": false,
+      "plan_seconds": 13.69,
+      "exec_seconds": 1.21,
+      "coverage": 0.0607,
+      "prompt_tokens": 210,
+      "completion_tokens": 562,
+      "cost_dollars": 0.0302
+    },
+    {
+      "round": 1,
+      "strokes": 6,
+      "done": false,
+      "plan_seconds": 12.2,
+      "exec_seconds": 0.31,
+      "coverage": 0.0703,
+      "prompt_tokens": 210,
+      "completion_tokens": 481,
+      "cost_dollars": 0.02615
+    },
+    {
+      "round": 2,
+      "strokes": 6,
+      "done": false,
+      "plan_seconds": 10.31,
+      "exec_seconds": 0.59,
+      "coverage": 0.0881,
+      "prompt_tokens": 210,
+      "completion_tokens": 436,
+      "cost_dollars": 0.0239
+    },
+    {
+      "round": 3,
+      "strokes": 7,
+      "done": false,
+      "plan_seconds": 10.65,
+      "exec_seconds": 0.53,
+      "coverage": 0.1113,
+      "prompt_tokens": 210,
+      "completion_tokens": 432,
+      "cost_dollars": 0.0237
+    },
+    {
+      "round": 4,
+      "strokes": 7,
+      "done": false,
+      "plan_seconds": 12.71,
+      "exec_seconds": 0.62,
+      "coverage": 0.1313,
+      "prompt_tokens": 210,
+      "completion_tokens": 524,
+      "cost_dollars": 0.0283
+    },
+    {
+      "round": 5,
+      "strokes": 7,
+      "done": false,
+      "plan_seconds": 11.76,
+      "exec_seconds": 0.56,
+      "coverage": 0.1432,
+      "prompt_tokens": 210,
+      "completion_tokens": 481,
+      "cost_dollars": 0.02615
+    },
+    {
+      "round": 6,
+      "strokes": 6,
+      "done": false,
+      "plan_seconds": 31.7,
+      "exec_seconds": 0.21,
+      "coverage": 0.1489,
+      "prompt_tokens": 210,
+      "completion_tokens": 401,
+      "cost_dollars": 0.02215
+    },
+    {
+      "round": 7,
+      "strokes": 8,
+      "done": false,
+      "plan_seconds": 10.52,
+      "exec_seconds": 0.5,
+      "coverage": 0.1569,
+      "prompt_tokens": 210,
+      "completion_tokens": 494,
+      "cost_dollars": 0.0268
+    }
+  ],
+  "finished_at": "2026-09-11T16:31:48.647079",
+  "total_strokes": 55,
+  "total_prompt_tokens": 1680,
+  "total_completion_tokens": 3811,
+  "total_cost_dollars": 0.2074,
+  "total_plan_seconds": 113.5,
+  "total_exec_seconds": 4.5,
+  "final_coverage": 0.1569
+}

@@ -1,0 +1,10 @@
+{
+  "run_dir": "results/bridge_scripted_20260911_164328",
+  "expected": "bridge",
+  "verdict": "suspension bridge",
+  "score": 1,
+  "prompt_tokens": 106,
+  "completion_tokens": 6,
+  "cost_dollars": 0.00136,
+  "model": "gpt-6-astra"
+}

@@ -1,0 +1,27 @@
+{
+  "subject": "bridge",
+  "agent": "scripted",
+  "model": null,
+  "started_at": "2026-09-11T16:43:28.871147",
+  "rounds": [
+    {
+      "round": 0,
+      "strokes": 8,
+      "done": true,
+      "plan_seconds": 0.0,
+      "exec_seconds": 1.74,
+      "coverage": 0.0896,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_dollars": 0.0
+    }
+  ],
+  "finished_at": "2026-09-11T16:43:30.896693",
+  "total_strokes": 8,
+  "total_prompt_tokens": 0,
+  "total_completion_tokens": 0,
+  "total_cost_dollars": 0.0,
+  "total_plan_seconds": 0.0,
+  "total_exec_seconds": 1.7,
+  "final_coverage": 0.0896
+}

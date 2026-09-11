@@ -1,0 +1,10 @@
+{
+  "run_dir": "results/bridge_astra_20260911_162950",
+  "expected": "bridge",
+  "verdict": "wooden bridge",
+  "score": 1,
+  "prompt_tokens": 106,
+  "completion_tokens": 6,
+  "cost_dollars": 0.00136,
+  "model": "gpt-6-astra"
+}
