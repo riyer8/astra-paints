@@ -61,6 +61,13 @@ def main():
                         {"prompt_tokens": 0, "completion_tokens": 0, "cost_dollars": 0.0})
         print(f"round {rounds}: {len(strokes)} strokes (done={done})")
         execute_strokes(world, canvas, strokes, on_step=tl.on_step)
+        plan_data = {"strokes": [{"color": list(s["color"]),
+                                "points": [list(p) for p in s["points"]]}
+                                for s in strokes],
+                    "done": bool(done)}
+        with open(os.path.join(run_dir, f"plan_{rounds:02d}.json"), "w") as f:
+            json.dump(plan_data, f)
+
         exec_s = time.time() - t0 - plan_s
         canvas.save(os.path.join(run_dir, f"round_{rounds:02d}.png"))
         summary["rounds"].append({
