@@ -1,6 +1,6 @@
 # Astra Paints (Simulator!)
 
-Inspired by [Thijs](https://github.com/tandpfun), I've been inspired to take on the robotics angle of what Astra can do (and how I should burn through some OpenAI Developer Credits!). I made a simulated version of painting, which is less cool that the real-moving one.
+Inspired by [Thijs](https://github.com/tandpfun), I'm taking on a *simulated* angle of what Astra's application to robotics can do (and how I should burn through some OpenAI Developer Credits!). I made a simulated version of painting, which is less cool that the real-moving one.
 
 Here is what I have!
 

@@ -9,9 +9,8 @@ import base64
 import io
 import json
 import os
-
+import re
 import imageio
-import numpy as np
 
 from .base import Agent
 
@@ -28,6 +27,7 @@ class AstraPaintAgent(Agent):
         self.spent = 0.0
         self.calls = 0
         self.api_key = os.environ.get("OPENAI_API_KEY")
+        self.last_usage = {"prompt_tokens": 0, "completion_tokens": 0, "cost_dollars": 0.0}
 
     def _canvas_png(self, pixels):
         buf = io.BytesIO()
@@ -53,19 +53,38 @@ class AstraPaintAgent(Agent):
             raise RuntimeError("Set OPENAI_API_KEY to use the Astra painter.")
         from openai import OpenAI  # lazy: scripted runs need no API package
         client = OpenAI(api_key=self.api_key)
-        # NOTE: exact model name/params are placeholders - adapt to the live API.
         resp = client.chat.completions.create(
             model=self.model,
+            response_format={"type": "json_object"},
             messages=[{"role": "user", "content": [
                 {"type": "text", "text": self._prompt()},
                 {"type": "image_url", "image_url": {
                     "url": "data:image/png;base64," + self._canvas_png(observation["canvas"])}},
             ]}],
-            max_tokens=2000,
+            max_completion_tokens=2000,
         )
         self.calls += 1
-        # TODO: real cost from resp.usage once model pricing is known
-        data = json.loads(resp.choices[0].message.content)
+        u = resp.usage
+        PRICE_IN, PRICE_OUT = 10.0, 50.0 #astra prices :O
+        call_cost = (u.prompt_tokens * PRICE_IN + u.completion_tokens * PRICE_OUT) / 1e6
+        self.last_usage = {
+            "prompt_tokens": u.prompt_tokens,
+            "completion_tokens": u.completion_tokens,
+            "cost_dollars": round(call_cost, 6),
+        }
+        self.spent += call_cost
+        print(f"call {self.calls}: {u.prompt_tokens}+{u.completion_tokens} tokens, "
+            f"${call_cost:.4f} (total ${self.spent:.4f})")
+
+
+        text = resp.choices[0].message.content
+        m = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
+        if m:
+            text = m.group(1)
+        else:
+            text = text[text.find("{"):text.rfind("}") + 1]
+        data = json.loads(text)
+
         strokes = [{"color": tuple(s["color"]),
                     "points": [tuple(p) for p in s["points"]]}
                    for s in data["strokes"]]
