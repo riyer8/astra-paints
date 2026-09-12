@@ -6,7 +6,7 @@ import time
 from sim.world import PaintingWorld
 from sim.canvas import Canvas
 from agents.base import execute_strokes
-from agents.scripted import ScriptedAgent
+from agents.scripted_agent import ScriptedAgent
 from sim.viz import Timelapse
 import datetime
 
@@ -18,6 +18,7 @@ def get_agent(name, subject):
         from agents.astra_agent import AstraPaintAgent
         return AstraPaintAgent(subject=subject,
                        model=os.environ.get("ASTRA_MODEL", "gpt-6-astra"))
+    # should create an agent file in agents/
     raise ValueError(name)
 
 

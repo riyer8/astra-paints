@@ -3,7 +3,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from sim.world import PaintingWorld
 from sim.canvas import Canvas
 from agents.base import execute_strokes
-from agents.scripted import ScriptedAgent
+from agents.scripted_agent import ScriptedAgent
 from sim.viz import Timelapse
 
 os.makedirs("results", exist_ok=True)

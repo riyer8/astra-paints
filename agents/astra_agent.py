@@ -1,10 +1,4 @@
-"""AstraPaintAgent: the AI painter. STUB - needs OPENAI_API_KEY to run.
-
-Same contract as ScriptedAgent: plan() -> (strokes, done).
-One API call per plan() - not per brush movement - so a painting costs
-a handful of calls, not thousands. That's what keeps it inside your
-50-requests-a-day tier.
-"""
+"""AstraPaintAgent: the AI painter. One API call per plan()"""
 import base64
 import io
 import json
