@@ -23,6 +23,7 @@ Attempt 1: Bull -> Beetle
 ## To start
 
 ```
+cp .env.example .env # then add your OPENAI_API_KEY (to connect to astra)
 pip install -r requirements.txt
 python run.py --agent scripted --subject bridge
 ```
@@ -47,4 +48,14 @@ python3 evals/judge.py $R --expect bull
 python3 evals/contact.py $R
 python3 evals/plots.py $R
 python3 evals/annotate.py $R
+```
+
+## To improve on a previous attempt
+
+Feed a failed run back with a written critique (the agent sees it in round 0):
+
+```
+python3 run.py --agent astra --subject "charging bull" --rounds 6 \
+  --feedback results/charging_bull/<attempt-1-dir>/final.png \
+  --feedback-note "It was judged a beetle: legs splayed like an insect's. Paint it better: four legs straight down, distinct head with horns."
 ```

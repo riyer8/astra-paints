@@ -3,3 +3,5 @@ numpy
 matplotlib
 imageio
 imageio-ffmpeg
+openai
+python-dotenv
