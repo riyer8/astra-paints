@@ -14,7 +14,8 @@ class OverBudget(Exception):
 
 
 class AstraPaintAgent(Agent):
-    def __init__(self, subject, budget_dollars=2.0, model="gpt-6-astra"):
+    def __init__(self, subject, budget_dollars=2.0, model="gpt-6-astra",
+                 feedback_path=None, feedback_note=None):
         self.subject = subject
         self.budget = budget_dollars
         self.model = model
@@ -22,11 +23,18 @@ class AstraPaintAgent(Agent):
         self.calls = 0
         self.api_key = os.environ.get("OPENAI_API_KEY")
         self.last_usage = {"prompt_tokens": 0, "completion_tokens": 0, "cost_dollars": 0.0}
+        self.feedback_path = feedback_path
+        self.feedback_note = feedback_note
+        self._feedback_used = False
 
     def _canvas_png(self, pixels):
         buf = io.BytesIO()
         imageio.imwrite(buf, pixels, format="PNG")
         return base64.b64encode(buf.getvalue()).decode()
+
+    def _file_png_b64(self, path):
+        with open(path, "rb") as f:
+            return base64.b64encode(f.read()).decode()
 
     def _prompt(self):
         return (
@@ -40,6 +48,10 @@ class AstraPaintAgent(Agent):
             "3-8 strokes per reply; done=true when the painting is finished."
         )
 
+    def _feedback_text(self):
+        note = self.feedback_note or "Study what went wrong and paint it better."
+        return f"Your previous attempt at '{self.subject}' is attached below. {note}"
+
     def plan(self, observation):
         if self.spent >= self.budget:
             raise OverBudget(f"spent ${self.spent:.2f} >= ${self.budget:.2f}")
@@ -47,14 +59,24 @@ class AstraPaintAgent(Agent):
             raise RuntimeError("Set OPENAI_API_KEY to use the Astra painter.")
         from openai import OpenAI  # lazy: scripted runs need no API package
         client = OpenAI(api_key=self.api_key)
+        content = [
+            {"type": "text", "text": self._prompt()},
+            {"type": "image_url", "image_url": {
+                "url": "data:image/png;base64," + self._canvas_png(observation["canvas"])}},
+        ]
+        if self.feedback_path and not self._feedback_used:
+            self._feedback_used = True
+            if os.path.exists(self.feedback_path):
+                content.append({"type": "text", "text": self._feedback_text()})
+                content.append({"type": "image_url", "image_url": {
+                    "url": "data:image/png;base64," + self._file_png_b64(self.feedback_path)}})
+                print(f"attaching feedback image: {self.feedback_path}")
+            else:
+                print(f"warning: feedback image not found: {self.feedback_path}")
         resp = client.chat.completions.create(
             model=self.model,
             response_format={"type": "json_object"},
-            messages=[{"role": "user", "content": [
-                {"type": "text", "text": self._prompt()},
-                {"type": "image_url", "image_url": {
-                    "url": "data:image/png;base64," + self._canvas_png(observation["canvas"])}},
-            ]}],
+            messages=[{"role": "user", "content": content}],
             max_completion_tokens=2000,
         )
         self.calls += 1

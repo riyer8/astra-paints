@@ -1,8 +1,24 @@
-# Astra Paints (Simulator!)
+# Astra Paints (Physics Simulator!)
 
-Inspired by [Thijs](https://github.com/tandpfun), I'm taking on a *simulated* angle of what Astra's application to robotics can do (and how I should burn through some OpenAI Developer Credits!). I made a simulated version of painting, which is less cool that the physical version.
+Inspired by [Thijs](https://github.com/tandpfun), I'm taking on a *simulated* angle of what Astra's application to robotics can do (and how I should burn through some OpenAI Developer Credits!). I made a simulated version of painting, which is less cool than the physical version.
 
 Here is what I have!
+
+## TLDR
+
+Attempt 3: Bull Passed ✅
+![Charging Bull Contact](results/charging_bull/charging_bull-astra-20260912_213341/contact.png)
+
+![Charging Bull Curves](results/charging_bull/charging_bull-astra-20260912_213341/curves.png)
+
+Attempt 2: Bull -> Donkey
+![Donkey Contact](results/charging_bull/charging_bull-astra-20260912_212931/contact.png)
+![Donkey Curves](results/charging_bull/charging_bull-astra-20260912_212931/curves.png)
+
+Attempt 1: Bull -> Beetle
+![Beetle Contact](results/charging_bull/charging_bull-astra-20260911_165048/contact.png)
+![Beetle Curves](results/charging_bull/charging_bull-astra-20260911_165048/curves.png)
+
 
 ## To start
 

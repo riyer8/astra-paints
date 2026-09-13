@@ -10,20 +10,28 @@ from agents.scripted_agent import ScriptedAgent
 from sim.viz import Timelapse
 import datetime
 
+# importing from dotenv
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-def get_agent(name, subject):
+def get_agent(name, subject, feedback=None, feedback_note=None):
     if name == "scripted":
         return ScriptedAgent()
     if name == "astra":
         from agents.astra_agent import AstraPaintAgent
         return AstraPaintAgent(subject=subject,
-                       model=os.environ.get("ASTRA_MODEL", "gpt-6-astra"))
+                       model=os.environ.get("ASTRA_MODEL", "gpt-6-astra"),
+                       feedback_path=feedback,
+                       feedback_note=feedback_note)
     # should create an agent file in agents/
     raise ValueError(name)
 
 
 def coverage(canvas):
-    # fraction of pixels touched (assumes white background)
+    # fraction of pixels touched (assumes white background, if it's not a white background, change pixel value)
     return float((canvas.pixels != 255).any(axis=-1).mean())
 
 
@@ -33,12 +41,16 @@ def main():
     ap.add_argument("--subject", default="bridge")
     ap.add_argument("--out", default="results")
     ap.add_argument("--rounds", type=int, default=8)
+    ap.add_argument("--feedback", default=None,
+                help="path to a previous attempt's final.png to improve on")
+    ap.add_argument("--feedback-note", default=None,
+                help="critique of the feedback image, e.g. 'it was judged a beetle: ...'")
     args = ap.parse_args()
 
     os.makedirs(args.out, exist_ok=True)
     world, canvas = PaintingWorld(), Canvas()
     tl = Timelapse(world, canvas, every=15)
-    agent = get_agent(args.agent, args.subject)
+    agent = get_agent(args.agent, args.subject, args.feedback, args.feedback_note)
 
     subject_slug = args.subject.replace(" ", "_")
     run_dir = os.path.join(args.out, subject_slug,
@@ -51,6 +63,8 @@ def main():
         "subject": args.subject,
         "agent": args.agent,
         "model": getattr(agent, "model", None),
+        "feedback": args.feedback,
+        "feedback_note": args.feedback_note,
         "started_at": datetime.datetime.now().isoformat(),
         "rounds": [],
     }

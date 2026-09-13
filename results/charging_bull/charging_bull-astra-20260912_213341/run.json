@@ -1,0 +1,84 @@
+{
+  "subject": "charging bull",
+  "agent": "astra",
+  "model": "gpt-6-astra",
+  "feedback": "results/charging_bull/charging_bull-astra-20260912_212931/final.png",
+  "feedback_note": "It was judged a donkey: the horns look like upright ears on top of the head. Paint it better: horns must be wide and curved, sweeping outward from the SIDES of the head \u2014 not short triangles on top. Give the bull a broad, blocky head, not a long narrow face.",
+  "started_at": "2026-09-12T21:33:41.947625",
+  "rounds": [
+    {
+      "round": 0,
+      "strokes": 8,
+      "done": false,
+      "plan_seconds": 16.35,
+      "exec_seconds": 1.57,
+      "coverage": 0.0683,
+      "prompt_tokens": 360,
+      "completion_tokens": 753,
+      "cost_dollars": 0.04125
+    },
+    {
+      "round": 1,
+      "strokes": 6,
+      "done": false,
+      "plan_seconds": 13.27,
+      "exec_seconds": 0.52,
+      "coverage": 0.0867,
+      "prompt_tokens": 211,
+      "completion_tokens": 548,
+      "cost_dollars": 0.02951
+    },
+    {
+      "round": 2,
+      "strokes": 6,
+      "done": false,
+      "plan_seconds": 11.58,
+      "exec_seconds": 0.91,
+      "coverage": 0.1207,
+      "prompt_tokens": 211,
+      "completion_tokens": 586,
+      "cost_dollars": 0.03141
+    },
+    {
+      "round": 3,
+      "strokes": 7,
+      "done": false,
+      "plan_seconds": 10.56,
+      "exec_seconds": 0.42,
+      "coverage": 0.1327,
+      "prompt_tokens": 211,
+      "completion_tokens": 505,
+      "cost_dollars": 0.02736
+    },
+    {
+      "round": 4,
+      "strokes": 7,
+      "done": false,
+      "plan_seconds": 13.84,
+      "exec_seconds": 0.45,
+      "coverage": 0.1457,
+      "prompt_tokens": 211,
+      "completion_tokens": 591,
+      "cost_dollars": 0.03166
+    },
+    {
+      "round": 5,
+      "strokes": 7,
+      "done": false,
+      "plan_seconds": 13.44,
+      "exec_seconds": 0.47,
+      "coverage": 0.1658,
+      "prompt_tokens": 211,
+      "completion_tokens": 560,
+      "cost_dollars": 0.03011
+    }
+  ],
+  "finished_at": "2026-09-12T21:35:05.715531",
+  "total_strokes": 41,
+  "total_prompt_tokens": 1415,
+  "total_completion_tokens": 3543,
+  "total_cost_dollars": 0.1913,
+  "total_plan_seconds": 79.0,
+  "total_exec_seconds": 4.3,
+  "final_coverage": 0.1658
+}

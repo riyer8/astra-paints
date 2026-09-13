@@ -1,0 +1,10 @@
+{
+  "run_dir": "results/charging_bull/charging_bull-astra-20260912_212931",
+  "expected": "bull",
+  "verdict": "donkey",
+  "score": 0,
+  "prompt_tokens": 106,
+  "completion_tokens": 205,
+  "cost_dollars": 0.01131,
+  "model": "gpt-6-astra"
+}
